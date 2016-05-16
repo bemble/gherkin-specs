@@ -1,0 +1,35 @@
+{
+  "name": "gherkin-specs",
+  "version": "1.0.0",
+  "description": "Generate Javascript implementation (specs) of Gherkin features.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pierrecle/gherkin-specs.git"
+  },
+  "keywords": [
+    "gherkin",
+    "features",
+    "jasmine",
+    "mocha",
+    "specs",
+    "bdd"
+  ],
+  "author": "Pierre CLEMENT <pierre@clement.re> (http://github.com/pierrecle/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pierrecle/gherkin-specs/issues"
+  },
+  "homepage": "https://github.com/pierrecle/gherkin-specs#readme",
+  "engines": {
+    "node": ">=4.2.0"
+  },
+  "dependencies": {
+    "gherkin": "^4.0.0",
+    "string": "^3.3.1"
+  }
+}
