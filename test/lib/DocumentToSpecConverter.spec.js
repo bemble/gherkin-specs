@@ -99,7 +99,7 @@ describe('DocumentToSpecConverter', () => {
   });
   
   describe('matchesParams', () => {
-    it('replaces ', (done) => {
+    it('replaces double quotes data by regexp and add arguments to the callback', (done) => {
       parser.parseFeature(`${__dirname}/../features/test1.feature`)
       .then((document) => converter.convert(document))
       .then((specElements) => {
@@ -107,6 +107,20 @@ describe('DocumentToSpecConverter', () => {
         assert.deepEqual(specElements[1].regexp, /^a global administrator named "([^"]+)"$/);
         assert.deepEqual(specElements[1].callbackParams, ['arg1']);
         assert(specElements[1].hasCallback, 'Given has callback'); 
+      })
+      .then(done, done);
+    });
+    
+    it('replaces arguments name by examples variable names', (done) => {
+      parser.parseFeature(`${__dirname}/../features/test-scenario-outline.feature`)
+      .then((document) => converter.convert(document))
+      .then((specElements) => {
+        assert.deepEqual(specElements[1].regexp, /^There are "([^"]+)" persons in the list$/);
+        assert.deepEqual(specElements[1].callbackParams, ['start']);
+        assert.deepEqual(specElements[2].regexp, /^I add "([^"]+)" persons to the list$/);
+        assert.deepEqual(specElements[2].callbackParams, ['added']);
+        assert.deepEqual(specElements[3].regexp, /^I should have "([^"]+)" persons in the list$/);
+        assert.deepEqual(specElements[3].callbackParams, ['total']);
       })
       .then(done, done);
     });
