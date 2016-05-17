@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "gherkin": "^4.0.0",
-    "glob": "^7.0.3",
     "node-getopt": "^0.2.3",
     "string": "^3.3.1"
   }
