@@ -1,8 +1,6 @@
 # gherkin-specs
 
 [![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
 
 > Generate Javascript implementation (specs) of Gherkin features.
 
@@ -15,6 +13,10 @@ such as [`karma-jasmine-feature`](https://github.com/gregorylimoratto/karma-jasm
 ```bash
 npm install gherkin-specs  -g
 ```
+
+## Warning
+
+:warning: For now, the tool does not take care about existing spec file, it will overwrite them.
 
 ## Run
 
@@ -32,7 +34,3 @@ Or take a look at the [wiki](https://github.com/pierrecle/gherkin-specs/wiki/)
 
 [npm-url]:https://npmjs.org/package/gherkin-specs
 [npm-image]:https://badge.fury.io/js/gherkin-specs.svg
-[travis-url]:https://travis-ci.org/pierrecle/gherkin-specs
-[travis-image]:https://travis-ci.org/pierrecle/gherkin-specs.svg?branch=master
-[coveralls-url]:https://coveralls.io/github/pierrecle/gherkin-specs?branch=master
-[coveralls-image]:https://coveralls.io/repos/github/pierrecle/gherkin-specs/badge.svg?branch=master

@@ -1,8 +1,11 @@
 {
   "name": "gherkin-specs",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "Generate Javascript implementation (specs) of Gherkin features.",
   "main": "index.js",
+  "bin": {
+    "gherkin-specs": "bin/gherkin-specs.js"
+  },
   "scripts": {
     "test": "mocha",
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls"
@@ -30,6 +33,8 @@
   },
   "dependencies": {
     "gherkin": "^4.0.0",
+    "glob": "^7.0.3",
+    "node-getopt": "^0.2.3",
     "string": "^3.3.1"
   }
 }
