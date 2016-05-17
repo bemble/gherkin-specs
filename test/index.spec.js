@@ -32,7 +32,7 @@ describe('GherkinSpecs', () => {
     it('convert feature to specs', (done) => {
       gherkinSpecs.convertFeature(`${__dirname}/features/test1.feature`)
         .then(() => {
-          let expectedSpecsContent = fs.readFileSync(`${__dirname}/features/expect-test1.feature.spec.js`, 'utf8');
+          let expectedSpecsContent = fs.readFileSync(`${__dirname}/features/expect-test1.featurespec.js`, 'utf8');
           let specsContent = fs.readFileSync(`${__dirname}/features/test1.feature.spec.js`, 'utf8');
           assert.equal(specsContent, expectedSpecsContent);
         })
