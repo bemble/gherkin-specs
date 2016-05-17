@@ -31,16 +31,17 @@ gherkin-specs --help
 ```
 
 Will output:
-```bash
+```
 Usage: gherkin-specs [OPTION] [feature files matching glob]
 Example: gherkin-specs test/**/*.feature
 
 Options:
-  -t, --typescript  generate specs in Typescript
-      --es3         generate specs in ES3
-  -h, --help        display this help
-      --verbose     verbose mode
-  -v, --version     show version
+  -t, --typescript          generate specs in Typescript
+      --es3                 generate specs in ES3
+      --no-params-matching  prevent double quotes string to be interpreted as parameters in regexp
+  -h, --help                display this help
+      --verbose             verbose mode
+  -v, --version             show version
 ```
 
 Or take a look at the [wiki](https://github.com/pierrecle/gherkin-specs/wiki/)

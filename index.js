@@ -4,6 +4,7 @@ const fs = require('fs');
 
 class GherkinSpecs  {
   constructor() {
+    this.paramsMatching = true;
     this.typescriptOutput = false;
     this.es3Output = false;
     this.parser = new GherkinSpecs.Parser();
@@ -11,6 +12,8 @@ class GherkinSpecs  {
   }
   
   convertFeature(filePath) {
+    this.docToSpecConverter.matchesParams = this.paramsMatching;
+    
     let specFilePath = this.getSpecFilePath(filePath);
     return this.parser.parseFeature(filePath)
       .then((document) => this.docToSpecConverter.convert(document))

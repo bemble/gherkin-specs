@@ -2,14 +2,14 @@
 
 const GherkinSpecs = require(`${__dirname}/../`);
 const getOpt = require('node-getopt');
-const glob = require('glob')
 
 opt = getOpt.create([
-  ['t' , 'typescript'  , 'generate specs in Typescript'],
-  [''  , 'es3'         , 'generate specs in ES3'],
-  ['h' , 'help'        , 'display this help'],
-  [''  , 'verbose'     , 'verbose mode'],
-  ['v' , 'version'     , 'show version']
+  ['t' , 'typescript'         , 'generate specs in Typescript'],
+  [''  , 'es3'                , 'generate specs in ES3'],
+  [''  , 'no-params-matching' , 'prevent double quotes string to be interpreted as parameters in regexp'],
+  ['h' , 'help'               , 'display this help'],
+  [''  , 'verbose'            , 'verbose mode'],
+  ['v' , 'version'            , 'show version']
 ])
 .bindHelp()
 .setHelp(`Usage: gherkin-specs [OPTION] [feature files matching glob]
@@ -22,6 +22,7 @@ Options:
 
 class Runner {
   constructor(options) {
+    this.paramsMatching = !options['no-params-matching'];
     this.verbose = !!options.verbose;
     this.typescript = !!options.typescript;
     this.es3 = !!options.es3;
@@ -32,17 +33,14 @@ class Runner {
     console.log(`Version: ${packageContent.version}`);
   }
   
-  convertFiles(filesGlob) {
+  convertFiles(files) {
     return new Promise((resolve, reject) => {
-      glob(filesGlob, (err, files) => {
-        if(err) return reject(err);
-        
-        resolve(files);
-      });
+      resolve(files);
     }).then((files) => {
       if(!files.length) return [];
       
       var gherkinSpecs = new GherkinSpecs();
+      gherkinSpecs.paramsMatching = this.paramsMatching;
       gherkinSpecs.typescriptOutput = this.typescript;
       gherkinSpecs.es3Output = this.es3;
       
@@ -66,5 +64,5 @@ if(opt.options.version) {
 }
 else {
   let runner = new Runner(opt.options);
-  runner.convertFiles(opt.argv[0]);
+  runner.convertFiles(opt.argv);
 }
