@@ -1,6 +1,6 @@
 {
   "name": "gherkin-specs",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Generate Javascript implementation (specs) of Gherkin features.",
   "main": "index.js",
   "bin": {
