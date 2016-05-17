@@ -30,6 +30,19 @@ gherkin-specs *.feature
 gherkin-specs --help
 ```
 
+Will output:
+```bash
+Usage: gherkin-specs [OPTION] [feature files matching glob]
+Example: gherkin-specs test/**/*.feature
+
+Options:
+  -t, --typescript  generate specs in Typescript
+      --es3         generate specs in ES3
+  -h, --help        display this help
+      --verbose     verbose mode
+  -v, --version     show version
+```
+
 Or take a look at the [wiki](https://github.com/pierrecle/gherkin-specs/wiki/)
 
 [npm-url]:https://npmjs.org/package/gherkin-specs

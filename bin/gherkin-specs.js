@@ -5,9 +5,11 @@ const getOpt = require('node-getopt');
 const glob = require('glob')
 
 opt = getOpt.create([
-  ['h' , 'help'                , 'display this help'],
-  ['' , 'verbose'             , 'verbose mode'],
-  ['v' , 'version'             , 'show version']
+  ['t' , 'typescript'  , 'generate specs in Typescript'],
+  [''  , 'es3'         , 'generate specs in ES3'],
+  ['h' , 'help'        , 'display this help'],
+  [''  , 'verbose'     , 'verbose mode'],
+  ['v' , 'version'     , 'show version']
 ])
 .bindHelp()
 .setHelp(`Usage: gherkin-specs [OPTION] [feature files matching glob]
@@ -19,8 +21,10 @@ Options:
 .parseSystem();
 
 class Runner {
-  constructor(verbose) {
-    this.verbose = verbose;
+  constructor(options) {
+    this.verbose = !!options.verbose;
+    this.typescript = !!options.typescript;
+    this.es3 = !!options.es3;
   }
   
   static showVersion() {
@@ -39,6 +43,9 @@ class Runner {
       if(!files.length) return [];
       
       var gherkinSpecs = new GherkinSpecs();
+      gherkinSpecs.typescriptOutput = this.typescript;
+      gherkinSpecs.es3Output = this.es3;
+      
       return files.map((featureFile) => {
         this.log(`Generating specs for ${featureFile}...`)
         gherkinSpecs.convertFeature(featureFile)
@@ -58,6 +65,6 @@ if(opt.options.version) {
   Runner.showVersion();
 }
 else {
-  let runner = new Runner(!!opt.options.verbose);
+  let runner = new Runner(opt.options);
   runner.convertFiles(opt.argv[0]);
 }
